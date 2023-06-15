@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ArticleImageView: View {
-    @State private var image: UIImage?
     let article: ArticleModel
-    let imageURL: URL?
     
     var body: some View {
         if let imageURLString = article.urlToImage, let imageURL = URL(string: imageURLString) {
@@ -21,7 +19,9 @@ struct ArticleImageView: View {
                     .clipped()
             } placeholder: {
                 ProgressView()
+                    .frame(maxWidth: .infinity, minHeight: 200)
             }
+            .background(Color(.quaternarySystemFill))
         }
     }
 }

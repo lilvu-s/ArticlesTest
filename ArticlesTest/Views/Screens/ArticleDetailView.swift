@@ -24,26 +24,26 @@ struct ArticleDetailView: View {
             .padding(.top, 10)
         }
         
-        VStack(alignment: .leading, spacing: 8) {
-            Text(article.title)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.top, 10)
-            
-            Text(article.source.name)
-                .bold()
-                .font(.headline)
-                .foregroundColor(.primary)
-        }
-        .padding(.leading, 10)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        
-        ArticleImageView(article: article, imageURL: URL(string: article.urlToImage ?? ""))
-            .padding(.vertical, 10)
-            .frame(maxWidth: .infinity, maxHeight: 400)
-        
         ScrollView {
             LazyVStack(spacing: 15) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(article.title)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .padding(.top, 10)
+                    
+                    Text(article.source.name)
+                        .bold()
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                }
+                .padding(.leading, 10)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                ArticleImageView(article: article)
+                    .padding(.vertical, 10)
+                    .frame(maxWidth: .infinity, maxHeight: 400)
+                
                 if let articleDescription = article.description {
                     ForEach(articleDescription.split(separator: "\n").filter { paragraph in
                         searchText.isEmpty || paragraph.localizedCaseInsensitiveContains(searchText)
@@ -82,6 +82,5 @@ struct ArticleDetailView: View {
             }
             .foregroundColor(.black)
         }
-        
     }
 }

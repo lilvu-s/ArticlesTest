@@ -14,7 +14,7 @@ struct ArticleCellView: View {
     var body: some View {
         NavigationLink(destination: ArticleDetailView(article: article)) {
             VStack(alignment: .leading) {
-                ArticleImageView(article: article, imageURL: URL(string: article.urlToImage ?? ""))
+                ArticleImageView(article: article)
                     .frame(maxWidth: .infinity, maxHeight: 200)
                     .padding(.top, 15)
                     .padding(.horizontal, 15)

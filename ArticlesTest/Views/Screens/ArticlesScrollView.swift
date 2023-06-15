@@ -59,7 +59,6 @@ struct ArticlesScrollView: View {
                                     }
                                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, idealHeight: geometry.size.height)
                                     .foregroundColor(.gray)
-                                    
                                 } else {
                                     ForEach(sortedArticles.indices, id: \.self) { index in
                                         let article = sortedArticles[index]

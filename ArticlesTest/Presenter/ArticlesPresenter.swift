@@ -77,7 +77,7 @@ final class ArticlesPresenter: ObservableObject {
             }
             
             self.sortedArticles = self.filteredArticles.filter { article in
-                guard let articleDate = self.formatStringToDate(article.publishedAt) else { return false }
+                guard let articleDate = self.formatStringToDate(article.publishedAt ?? "Unwrapping error") else { return false }
                 return (startDate...endDate).contains(articleDate)
             }
         }
@@ -93,7 +93,7 @@ final class ArticlesPresenter: ObservableObject {
         case .publishedAt:
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.sortedArticles = self.filteredArticles.sorted { $1.publishedAt < $0.publishedAt }
+                self.sortedArticles = self.filteredArticles.sorted { $1.publishedAt ?? "Unwrapping error" < $0.publishedAt ?? "Unwrapping error" }
             }
         case .calendar:
             updateSortedArticles()

@@ -20,7 +20,11 @@ final class ArticlesService: ArticlesServiceProtocol {
     var pageSize = 30
     
     init() {
-        self.urlString = "https://newsapi.org/v2/everything?q=ukraine&pageSize=\(pageSize)&apiKey=c09f8c39de7949da81d8604ff46ffcc8"
+        guard let apiKey = ProcessInfo.processInfo.environment["API_KEY"] else {
+            fatalError("No API key found in environment variables")
+        }
+        
+        self.urlString = "https://newsapi.org/v2/everything?q=ukraine&pageSize=\(pageSize)&apiKey=\(apiKey)"
     }
     
     func fetchArticles() async throws -> ArticlesListModel {
